@@ -1,6 +1,5 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +10,6 @@
         body {
             padding: 10px;
         }
-
         .preloader {
             position: fixed;
             top: 0;
@@ -22,22 +20,18 @@
             overflow-y: auto;
             background-color: #f8f9fa;
         }
-
         .preloader .spinner-border {
             position: absolute;
             left: 50%;
             top: 50%;
             text-align: center;
         }
-
         .validasi {
             display: none;
         }
-
         #form_matkul {
             display: none;
         }
-
         #result {
             position: fixed;
             top: 0;
@@ -49,12 +43,10 @@
             overflow-y: auto;
             display: none;
         }
-
         @media screen and (max-width: 768px) {
             .banner_atas {
                 text-align: center;
             }
-
             .tapak_asmo {
                 display: block !important;
                 text-align: center !important;
@@ -62,37 +54,30 @@
         }
     </style>
 </head>
-
 <body class="bg-light">
-
     <div class="preloader">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-
     <div class="container bg-white my-3" style="border: 1px solid #343a40;">
         <div class="row">
             <div class="col-md-1 banner_atas">
-                <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50"
-                    class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg">
+                <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50" class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg">
             </div>
             <div class="col-md-11 banner_atas">
                 <span class="d-block text-dark h5">FAKULTAS ILMU KOMPUTER</span>
                 <span class="d-block h4" style="color: #6f42c1;">UNIVERSITAS DUTA BANGSA SURAKARTA</span>
-                <span class="d-block text-dark"><small>Bhayangkara No. 55 Surakarta Telp. 0271-719552 web:
-                        http://fikom.udb.ac.id</small></span>
+                <span class="d-block text-dark"><small>Bhayangkara No. 55 Surakarta Telp. 0271-719552 web: http://fikom.udb.ac.id</small></span>
             </div>
         </div>
     </div>
-
     <div class="container bg-white mb-3">
         <br>
         <p class="text-center h3 my-3" style="font-family: rage italic;"><u>Kartu Rencana Studi</u></p>
         <br>
         <div class="progress mb-3">
-            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%">
-                Step 1</div>
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%">Step 1</div>
         </div>
         <form action="" method="post" id="form_krs_mhs">
             <div id="form_datadiri">
@@ -100,10 +85,8 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="no_daftar">No. Daftar</label>
-                            <input class="form-control" type="text" name="no_daftar" id="no_daftar" autocomplete="off"
-                                required autofocus>
-                            <small class="text-danger ml-1 validasi" id="alert_no_daftar">No. Daftar tidak boleh
-                                kosong.</small>
+                            <input class="form-control" type="text" name="no_daftar" id="no_daftar" autocomplete="off" required autofocus>
+                            <small class="text-danger ml-1 validasi" id="alert_no_daftar">No. Daftar tidak boleh kosong.</small>
                         </div>
                         <div class="form-group">
                             <label for="nim">NIM</label>
@@ -187,8 +170,7 @@
                             <td>Pemrograman Web 1</td>
                             <td class="text-center">3</td>
                             <td class="text-center">
-                                <input class="checkboxs" type="checkbox" data-kelas="20A2" data-kode_matkul="TI203"
-                                    data-sks="3" name="Pemrograman_Web" id="Pemrograman_Web" value="Pemrograman Web 1">
+                                <input class="checkboxs" type="checkbox" data-kelas="20A2" data-kode_matkul="TI203" data-sks="3" name="Pemrograman_Web" id="Pemrograman_Web" value="Pemrograman Web 1">
                             </td>
                         </tr>
                         <tr>
@@ -197,8 +179,7 @@
                             <td>Kalkulus 2</td>
                             <td class="text-center">2</td>
                             <td class="text-center">
-                                <input class="checkboxs" type="checkbox" data-kelas="20A2" data-kode_matkul="TI205"
-                                    data-sks="2" name="Kalkulus_2" id="Kalkulus_2" value="Kalkulus 2">
+                                <input class="checkboxs" type="checkbox" data-kelas="20A2" data-kode_matkul="TI205" data-sks="2" name="Kalkulus_2" id="Kalkulus_2" value="Kalkulus 2">
                             </td>
                         </tr>
                         <tr>
