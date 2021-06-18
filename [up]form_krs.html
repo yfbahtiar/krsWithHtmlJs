@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-    <link rel="stylesheet" href="bootstrap.min.css">
-    <title>Form KRS - Yusuf Bahtiar - 200103057</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+    <title>Form KRS</title>
     <style>
         body {
             padding: 10px;
@@ -156,14 +156,14 @@
                         <div class="form-group">
                             <label for="semester">Semester</label>
                             <select class="form-control" name="semester" id="semester" required>
-                                <option value="1 (Ganjil)">1 (Ganjil)</option>
-                                <option value="2 (Genap)">2 (Genap)</option>
-                                <option value="3 (Ganjil)">3 (Ganjil)</option>
-                                <option value="4 (Genap)">4 (Genap)</option>
-                                <option value="5 (Ganjil)">5 (Ganjil)</option>
-                                <option value="6 (Genap)">6 (Genap)</option>
-                                <option value="7 (Ganjil)">7 (Ganjil)</option>
-                                <option value="8 (Genap)">8 (Genap)</option>
+                                <option class="opt_smt" value="1 (Ganjil)">1 (Ganjil)</option>
+                                <option class="opt_smt" value="2 (Genap)">2 (Genap)</option>
+                                <option class="opt_smt" value="3 (Ganjil)">3 (Ganjil)</option>
+                                <option class="opt_smt" value="4 (Genap)">4 (Genap)</option>
+                                <option class="opt_smt" value="5 (Ganjil)">5 (Ganjil)</option>
+                                <option class="opt_smt" value="6 (Genap)">6 (Genap)</option>
+                                <option class="opt_smt" value="7 (Ganjil)">7 (Ganjil)</option>
+                                <option class="opt_smt" value="8 (Genap)">8 (Genap)</option>
                             </select>
                         </div>
                     </div>
@@ -485,29 +485,29 @@
                     </tbody>
                 </table>
                 <hr class="mt-4">
-                <div class="row my-3">
+                <div class="row">
                     <div class="col-md-6 mb-3">
                         <button class="btn btn-warning btn-block text-light" id="to_form_datadiri">Kembali</button>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <button class="btn btn-secondary btn-block" id="to_reset_matkul"
-                            onclick="return confirm('Yakin mau direset?')">Reset Pengambilan</button>
+                        <button class="btn btn-secondary btn-block" id="to_reset" data-toggle="modal"
+                            data-target="#modal_reset">Reset Pengambilan</button>
                     </div>
                     <div class="col-md-3 mb-3">
                         <button class="btn btn-success btn-block" id="to_preview" data-toggle="modal"
-                            data-target="#modal_konfirmasi">Submit</button>
+                            data-target="#modal_preview">Submit</button>
                     </div>
                 </div>
             </div>
         </form>
 
-        <!-- modal konfirmasi -->
-        <div class="modal fade" id="modal_konfirmasi" tabindex="-1" role="dialog"
-            aria-labelledby="modal_konfirmasiTitle" aria-hidden="true">
+        <!-- modal konfirmasi rest  -->
+        <div class="modal fade" id="modal_preview" tabindex="-1" role="dialog" aria-labelledby="modal_previewTitle"
+            aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal_konfirmasiTitle">Konfirmasi</h5>
+                        <h5 class="modal-title" id="modal_previewTitle">Konfirmasi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -582,6 +582,30 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="to_result">Proses KRS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal konfirmasi reset  -->
+        <div class="modal fade" id="modal_reset" tabindex="-1" role="dialog" aria-labelledby="modal_resetTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_resetTitle">Konfirmasi</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Dengan memilih "<strong>Ya, yakin</strong>", maka:</p>
+                        <ul>
+                            <li>Semua matkul yang diambil akan direset.</li>
+                            <li>Dapat mengulang pemilihan semester.</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="to_reset_matkul">Ya, yakin</button>
                     </div>
                 </div>
             </div>
@@ -729,17 +753,18 @@
             // utk ujicoba saja
             // $('#form_datadiri').hide();
             // $('#form_matkul').hide();
-            // $('#modal_konfirmasi').modal('show');
 
             var krs_no_urut = 0;
             var krs_sks_total = 0;
 
             $('.preloader').hide();
+            $('#to_reset').prop('disabled', true);
             $('#to_preview').prop('disabled', true);
-            $('#to_reset_matkul').prop('disabled', true);
 
             $('#to_form_matkul').click(function (e) {
                 e.preventDefault();
+                var semester = $('#semester').val();
+                $('.data_semester').html(semester);
                 if ($('#no_daftar').val() == '' || $('#nim').val() == '' || $('#nama').val() == '') {
                     if ($('#no_daftar').val() == '') {
                         $('#alert_no_daftar').show();
@@ -762,6 +787,7 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
                     } else if ($('#semester').val() == '2 (Genap)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').show();
@@ -771,6 +797,7 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
                     } else if ($('#semester').val() == '3 (Ganjil)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -780,6 +807,10 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '4 (Genap)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -789,6 +820,10 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '5 (Ganjil)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -798,6 +833,10 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '6 (Genap)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -807,6 +846,10 @@
                         $('#tbl_matkul_6').show();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '7 (Ganjil)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -816,6 +859,10 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').show();
                         $('#tbl_matkul_8').hide();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '8 (Genap)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -825,6 +872,10 @@
                         $('#tbl_matkul_6').hide();
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').show();
+                        $('.opt_smt').prop('disabled', true);
+                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
+                        $('#to_preview').prop('disabled', false);
+                        $('#to_reset').prop('disabled', false);
                     }
                 }
             });
@@ -836,7 +887,7 @@
                 $('#form_matkul').hide();
             });
 
-            $('#to_preview').on('click', function (e) {
+            $('#to_preview').click(function (e) {
                 e.preventDefault();
                 var no_daftar = $('#no_daftar').val();
                 var nim = $('#nim').val();
@@ -845,7 +896,6 @@
                 var pa = $('#pa').val();
                 var jenjang = $('#jenjang').val();
                 var jenis_daftar = $('#jenis_daftar').val();
-                var semester = $('#semester').val();
 
                 $('.data_no_daftar').html(no_daftar);
                 $('.data_nim').html(nim);
@@ -854,14 +904,13 @@
                 $('.data_pa').html(pa);
                 $('.data_jenjang').html(jenjang);
                 $('.data_jenis_daftar').html(jenis_daftar);
-                $('.data_semester').html(semester);
                 $('.krs_sks_total').html(krs_sks_total);
             });
 
-            $('.checkboxs').on('click', function (e) {
+            $('.checkboxs').click(function (e) {
                 e.preventDefault();
                 $('#to_preview').prop('disabled', false);
-                $('#to_reset_matkul').prop('disabled', false);
+                $('#to_reset').prop('disabled', false);
                 var krs_kelas = "";
                 var krs_kode_matkul = "";
                 var krs_nama_dosen = "";
@@ -881,6 +930,10 @@
                 $(`#hasil_krs`).append(`<tr><td scope="row" class="text-center">` + krs_no_urut + `</td><td class="text-center">` + krs_kelas + `</td><td class="text-center">` + krs_kode_matkul + `</td><td>` + krs_nama_dosen + `</td><td>` + krs_nama_matkul + `</td><td class="text-center">` + krs_sks + `</td><td></td><td></td></tr>`);
             });
 
+            $('#to_reset').click(function (e) {
+                e.preventDefault();
+            });
+
             $('#close_result').click(function (e) {
                 e.preventDefault();
                 $('#result').hide();
@@ -891,10 +944,14 @@
 
             $('#to_reset_matkul').click(function (e) {
                 e.preventDefault();
+                $('#modal_reset').modal('hide');
                 $('#form_matkul').trigger('reset');
-                $('.checkboxs').show().prop('disabled', false);
                 $('#preview_krs').empty();
                 $('#hasil_krs').empty();
+                $('.checkboxs').show().prop('disabled', false);
+                $('.opt_smt').prop('disabled', false);
+                $('#to_reset').prop('disabled', true);
+                $('#to_preview').prop('disabled', true);
                 krs_no_urut = 0;
                 krs_sks_total = 0;
             });
@@ -904,11 +961,13 @@
                     $('#result').show();
                     $('#form_datadiri').hide();
                     $('#form_matkul').hide();
-                    $('#modal_konfirmasi').modal('hide');
-                    $('.krs_sks_total').html(krs_sks_total + '&nbsp;SKS');
+                    $('#modal_preview').modal('hide');
+                    $('#modal_reset').modal('hide');
+                    $('.krs_sks_total').html(krs_sks_total);
                     $(this).html(`<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`).prop('disabled', true);
                 } else {
-                    alert('Total KRS lebih dari 24, Silahkan reset pengambilan matkul !');
+                    $('#modal_preview').modal('hide');
+                    $('#form_matkul').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">Total KRS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
                 }
             });
 
