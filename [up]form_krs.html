@@ -64,7 +64,7 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" id="spy">
 
     <div class="preloader">
         <div class="spinner-border" role="status">
@@ -75,10 +75,10 @@
     <div class="container bg-white my-3" style="border: 1px solid #343a40;">
         <div class="row">
             <div class="col-md-1 banner_atas">
-                <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50"
-                    class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg">
-                <!-- <img src="LOGO.png" width="37" height="50" class="d-inline-block align-top my-4 mx-3"
-                    alt="logo udb no_bg"> -->
+                <!-- <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50"
+                    class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg"> -->
+                <img src="LOGO.png" width="37" height="50" class="d-inline-block align-top my-4 mx-3"
+                    alt="logo udb no_bg">
             </div>
             <div class="col-md-11 banner_atas">
                 <span class="d-block text-dark h5">FAKULTAS ILMU KOMPUTER</span>
@@ -97,7 +97,7 @@
             <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 50%">
                 Step 1</div>
         </div>
-        <form action="" method="post" id="form_krs_mhs">
+        <form action="" method="post" id="form_krs_mhs" data-spy="scroll" data-target="spy">
             <div id="form_datadiri">
                 <div class="row">
                     <div class="col-md-6">
@@ -155,7 +155,8 @@
                         </div>
                         <div class="form-group">
                             <label for="semester">Semester</label>
-                            <select class="form-control" name="semester" id="semester" required>
+                            <select class="form-control" name="semester" id="semester" data-toggle="tooltip"
+                                title="Pilihan semester dapat diubah" required>
                                 <option class="opt_smt" value="1 (Ganjil)">1 (Ganjil)</option>
                                 <option class="opt_smt" value="2 (Genap)">2 (Genap)</option>
                                 <option class="opt_smt" value="3 (Ganjil)">3 (Ganjil)</option>
@@ -617,10 +618,10 @@
         <div class="container bg-white my-3" style="border: 1px solid #343a40;">
             <div class="row">
                 <div class="col-md-1 banner_atas">
-                    <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50"
-                        class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg">
-                    <!-- <img src="LOGO.png" width="37" height="50" class="d-inline-block align-top my-4 mx-3"
-                        alt="logo udb no_bg"> -->
+                    <!-- <img src="https://udb.ac.id/storage/app/media/uploaded-files/LOGO.jpg" width="37" height="50"
+                        class="d-inline-block align-top my-4 mx-3" alt="logo udb no_bg"> -->
+                    <img src="LOGO.png" width="37" height="50" class="d-inline-block align-top my-4 mx-3"
+                        alt="logo udb no_bg">
                 </div>
                 <div class="col-md-9 banner_atas">
                     <span class="d-block text-dark h5">FAKULTAS ILMU KOMPUTER</span>
@@ -735,9 +736,9 @@
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -745,7 +746,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 
-    <!-- <script src="jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="jquery-3.3.1.min.js"></script>
     <script src="popper.min.js"></script>
     <script src="bootstrap.min.js"></script> -->
 
@@ -768,10 +769,13 @@
                 $('.data_semester').html(semester);
                 if ($('#no_daftar').val() == '' || $('#nim').val() == '' || $('#nama').val() == '') {
                     if ($('#no_daftar').val() == '') {
+                        $('body, html').animate({ scrollTop: 350 }, 500);
                         $('#alert_no_daftar').show();
                     } else if ($('#nim').val() == '') {
+                        $('body, html').animate({ scrollTop: 380 }, 500);
                         $('#alert_nim').show();
                     } else if ($('#nama').val() == '') {
+                        $('body, html').animate({ scrollTop: 400 }, 500);
                         $('#alert_nama').show();
                     }
                 } else {
@@ -789,6 +793,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                     } else if ($('#semester').val() == '2 (Genap)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').show();
@@ -799,6 +804,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                     } else if ($('#semester').val() == '3 (Ganjil)') {
                         $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').hide();
@@ -809,6 +815,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -822,6 +829,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -835,6 +843,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -848,6 +857,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -861,6 +871,7 @@
                         $('#tbl_matkul_7').show();
                         $('#tbl_matkul_8').hide();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -874,6 +885,7 @@
                         $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').show();
                         $('.opt_smt').prop('disabled', true);
+                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
                         $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
@@ -928,7 +940,7 @@
                     $(this).prop('disabled', true).hide();
                 });
                 $('#preview_krs').append(`<tr><td scope="row" class="text-center">` + krs_no_urut + `</td><td>` + krs_kode_matkul + `</td><td>` + krs_nama_matkul + `</td><td class="text-center">` + krs_sks + `</td></tr>`);
-                $(`#hasil_krs`).append(`<tr><td scope="row" class="text-center">` + krs_no_urut + `</td><td class="text-center">` + krs_kelas + `</td><td class="text-center">` + krs_kode_matkul + `</td><td>` + krs_nama_dosen + `</td><td>` + krs_nama_matkul + `</td><td class="text-center">` + krs_sks + `</td><td></td><td></td></tr>`);
+                $('#hasil_krs').append(`<tr><td scope="row" class="text-center">` + krs_no_urut + `</td><td class="text-center">` + krs_kelas + `</td><td class="text-center">` + krs_kode_matkul + `</td><td>` + krs_nama_dosen + `</td><td>` + krs_nama_matkul + `</td><td class="text-center">` + krs_sks + `</td><td></td><td></td></tr>`);
             });
 
             $('#to_reset').click(function (e) {
@@ -953,6 +965,10 @@
                 $('.opt_smt').prop('disabled', false);
                 $('#to_reset').prop('disabled', true);
                 $('#to_preview').prop('disabled', true);
+                $('#semester').prop('title', 'Pilihan semester dapat diubah');
+                $('.progress-bar').css('width', '50%').html('Step 1');
+                $('#form_datadiri').show();
+                $('#form_matkul').hide();
                 krs_no_urut = 0;
                 krs_sks_total = 0;
             });
@@ -968,7 +984,7 @@
                     $(this).html(`<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`).prop('disabled', true);
                 } else {
                     $('#modal_preview').modal('hide');
-                    $('#notip').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">Total KRS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
+                    $('#notip').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">Total SKS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
                 }
             });
 
