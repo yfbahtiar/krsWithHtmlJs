@@ -7,7 +7,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
-    <title>Form KRS</title>
+    <title>Form KRS - Yusuf Bahtiar - 200103057</title>
     <style>
         body {
             padding: 10px;
@@ -485,6 +485,7 @@
                     </tbody>
                 </table>
                 <hr class="mt-4">
+                <div id="notip"></div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <button class="btn btn-warning btn-block text-light" id="to_form_datadiri">Kembali</button>
@@ -967,7 +968,7 @@
                     $(this).html(`<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`).prop('disabled', true);
                 } else {
                     $('#modal_preview').modal('hide');
-                    $('#form_matkul').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">Total KRS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
+                    $('#notip').append(`<div class="alert alert-warning alert-dismissible fade show" role="alert">Total KRS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
                 }
             });
 
