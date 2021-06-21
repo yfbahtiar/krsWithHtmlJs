@@ -157,14 +157,14 @@
                             <label for="semester">Semester</label>
                             <select class="form-control" name="semester" id="semester" data-toggle="tooltip"
                                 title="Pilihan semester dapat diubah" required>
-                                <option class="opt_smt" value="1 (Ganjil)">1 (Ganjil)</option>
-                                <option class="opt_smt" value="2 (Genap)">2 (Genap)</option>
-                                <option class="opt_smt" value="3 (Ganjil)">3 (Ganjil)</option>
-                                <option class="opt_smt" value="4 (Genap)">4 (Genap)</option>
-                                <option class="opt_smt" value="5 (Ganjil)">5 (Ganjil)</option>
-                                <option class="opt_smt" value="6 (Genap)">6 (Genap)</option>
-                                <option class="opt_smt" value="7 (Ganjil)">7 (Ganjil)</option>
-                                <option class="opt_smt" value="8 (Genap)">8 (Genap)</option>
+                                <option value="1 (Ganjil)">1 (Ganjil)</option>
+                                <option value="2 (Genap)">2 (Genap)</option>
+                                <option value="3 (Ganjil)">3 (Ganjil)</option>
+                                <option value="4 (Genap)">4 (Genap)</option>
+                                <option value="5 (Ganjil)">5 (Ganjil)</option>
+                                <option value="6 (Genap)">6 (Genap)</option>
+                                <option value="7 (Ganjil)">7 (Ganjil)</option>
+                                <option value="8 (Genap)">8 (Genap)</option>
                             </select>
                         </div>
                     </div>
@@ -736,6 +736,7 @@
         </div>
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
         integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -752,21 +753,15 @@
 
     <script>
         $(document).ready(function () {
-            // utk ujicoba saja
-            // $('#form_datadiri').hide();
-            // $('#form_matkul').hide();
-
             var krs_no_urut = 0;
             var krs_sks_total = 0;
 
-            $('.preloader').hide();
-            $('#to_reset').prop('disabled', true);
-            $('#to_preview').prop('disabled', true);
+            $('.preloader, #tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
+            $('#to_reset, #to_preview').prop('disabled', true);
+            // $('#tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5,#tbl_matkul_6,#tbl_matkul_7,#tbl_matkul_8').hide();
 
             $('#to_form_matkul').click(function (e) {
                 e.preventDefault();
-                var semester = $('#semester').val();
-                $('.data_semester').html(semester);
                 if ($('#no_daftar').val() == '' || $('#nim').val() == '' || $('#nama').val() == '') {
                     if ($('#no_daftar').val() == '') {
                         $('body, html').animate({ scrollTop: 350 }, 500);
@@ -780,114 +775,44 @@
                     }
                 } else {
                     $('.progress-bar').css('width', '100%').html('Step 2');
-                    $('#form_datadiri').hide();
+                    $('#form_datadiri, .validasi').hide();
                     $('#form_matkul').show();
-                    $('.validasi').hide();
+                    $('#semester').replaceWith(`<input class="form-control" data-toggle="tooltip" title="Pilihan semester tidak dapat diubah" type="text" name="semester" id="semester" value="` + $('#semester').val() + `" readonly>`);
                     if ($('#semester').val() == '1 (Ganjil)') {
                         $('#tbl_matkul_1').show();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
+                        $('#tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
                     } else if ($('#semester').val() == '2 (Genap)') {
-                        $('#tbl_matkul_1').hide();
                         $('#tbl_matkul_2').show();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
+                        $('#tbl_matkul_1, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
                     } else if ($('#semester').val() == '3 (Ganjil)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
                         $('#tbl_matkul_3').show();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
                         // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
                         $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '4 (Genap)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
                         $('#tbl_matkul_4').show();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
-                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
+                        // hapus script di bawah ini jika data matkul sudah ditambahken
                         $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '5 (Ganjil)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
                         $('#tbl_matkul_5').show();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
-                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_6, #tbl_matkul_7, #tbl_matkul_8').hide();
+                        // hapus script di bawah ini jika data matkul sudah ditambahken
                         $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '6 (Genap)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
                         $('#tbl_matkul_6').show();
-                        $('#tbl_matkul_7').hide();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
-                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_7, #tbl_matkul_8').hide();
+                        // hapus script di bawah ini jika data matkul sudah ditambahken
                         $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '7 (Ganjil)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_8').hide();
                         $('#tbl_matkul_7').show();
-                        $('#tbl_matkul_8').hide();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
-                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
+                        // hapus script di bawah ini jika data matkul sudah ditambahken
                         $('#to_reset').prop('disabled', false);
                     } else if ($('#semester').val() == '8 (Genap)') {
-                        $('#tbl_matkul_1').hide();
-                        $('#tbl_matkul_2').hide();
-                        $('#tbl_matkul_3').hide();
-                        $('#tbl_matkul_4').hide();
-                        $('#tbl_matkul_5').hide();
-                        $('#tbl_matkul_6').hide();
-                        $('#tbl_matkul_7').hide();
                         $('#tbl_matkul_8').show();
-                        $('.opt_smt').prop('disabled', true);
-                        $('#semester').prop('title', 'Pilihan semester tidak dapat diubah');
-                        // hapus dua script di bawah ini jika data matkul sudah ditambahken
-                        $('#to_preview').prop('disabled', false);
+                        $('#tbl_matkul_1, #tbl_matkul_2, #tbl_matkul_3, #tbl_matkul_4, #tbl_matkul_5, #tbl_matkul_6, #tbl_matkul_7').hide();
+                        // hapus script di bawah ini jika data matkul sudah ditambahken
                         $('#to_reset').prop('disabled', false);
                     }
                 }
@@ -909,6 +834,7 @@
                 var pa = $('#pa').val();
                 var jenjang = $('#jenjang').val();
                 var jenis_daftar = $('#jenis_daftar').val();
+                var semester = $('#semester').val();
 
                 $('.data_no_daftar').html(no_daftar);
                 $('.data_nim').html(nim);
@@ -917,13 +843,13 @@
                 $('.data_pa').html(pa);
                 $('.data_jenjang').html(jenjang);
                 $('.data_jenis_daftar').html(jenis_daftar);
+                $('.data_semester').html(semester);
                 $('.krs_sks_total').html(krs_sks_total);
             });
 
             $('.checkboxs').click(function (e) {
                 e.preventDefault();
-                $('#to_preview').prop('disabled', false);
-                $('#to_reset').prop('disabled', false);
+                $('#to_preview, #to_reset').prop('disabled', false);
                 var krs_kelas = "";
                 var krs_kode_matkul = "";
                 var krs_nama_dosen = "";
@@ -952,20 +878,17 @@
                 $('#result').hide();
                 $('#form_datadiri').show();
                 $('.progress-bar').css('width', '50%').html('Step 1');
-                $('#to_result').html('Proses KRS').prop('disabled', false);
+                $('#to_result').prop('disabled', false).html('Proses KRS');
             });
 
             $('#to_reset_matkul').click(function (e) {
                 e.preventDefault();
                 $('#modal_reset').modal('hide');
                 $('#form_matkul').trigger('reset');
-                $('#preview_krs').empty();
-                $('#hasil_krs').empty();
+                $('#preview_krs, #hasil_krs').empty();
                 $('.checkboxs').show().prop('disabled', false);
-                $('.opt_smt').prop('disabled', false);
-                $('#to_reset').prop('disabled', true);
-                $('#to_preview').prop('disabled', true);
-                $('#semester').prop('title', 'Pilihan semester dapat diubah');
+                $('#to_reset, #to_preview').prop('disabled', true);
+                $('#semester').replaceWith(`<select class="form-control" name="semester" id="semester" data-toggle="tooltip" title="Pilihan semester dapat diubah" required> <option value="1 (Ganjil)">1 (Ganjil)</option><option value="2 (Genap)">2 (Genap)</option><option value="3 (Ganjil)">3 (Ganjil)</option><option value="4 (Genap)">4 (Genap)</option><option value="5 (Ganjil)">5 (Ganjil)</option><option value="6 (Genap)">6 (Genap)</option><option value="7 (Ganjil)">7 (Ganjil)</option><option value="8 (Genap)">8 (Genap)</option></select>`);
                 $('.progress-bar').css('width', '50%').html('Step 1');
                 $('#form_datadiri').show();
                 $('#form_matkul').hide();
@@ -975,13 +898,11 @@
 
             $('#to_result').click(function () {
                 if (krs_sks_total <= 24) {
-                    $('#result').show();
-                    $('#form_datadiri').hide();
-                    $('#form_matkul').hide();
-                    $('#modal_preview').modal('hide');
-                    $('#modal_reset').modal('hide');
+                    $(this).prop('disabled', true).html(`<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`);
+                    $('#modal_preview, #modal_reset').modal('hide');
+                    $('#form_datadiri, #form_matkul').hide();
                     $('.krs_sks_total').html(krs_sks_total);
-                    $(this).html(`<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`).prop('disabled', true);
+                    $('#result').show();
                 } else {
                     $('#modal_preview').modal('hide');
                     $('#notip').append(`<div class="alert alert-danger alert-dismissible fade show" role="alert">Total SKS lebih dari 24, Silahkan reset pengambilan matkul.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>`);
